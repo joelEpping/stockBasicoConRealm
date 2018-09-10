@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">stockBasicoConRealm</string>
+
+    <string name="title_activity_new_product">NewProductActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="btn_select_image">Seleccione una imagen</string>
+    <string name="tv_product_name">nombre</string>
+    <string name="codigo_de_barra">codigo de barra</string>
+    <string name="precio">precio</string>
+    <string name="cantidad">cantidad</string>
+    <string name="guardar">Guardar</string>
+</resources>
