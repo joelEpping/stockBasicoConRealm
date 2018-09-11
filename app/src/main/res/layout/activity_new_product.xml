@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/ivProductImage"
-            android:layout_width="@dimen/image_medium_size"
-            android:layout_height="@dimen/image_medium_size"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/title_activity_new_product"
             android:scaleType="centerCrop"
@@ -25,6 +25,7 @@
             android:id="@+id/btnProductImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="pickerImage"
             android:layout_gravity="center_horizontal"
             android:text="@string/btn_select_image" />
 
@@ -58,7 +59,7 @@
         android:text="modelo" />
 
     <EditText
-        android:id="@+id/etProductSupplier"
+        android:id="@+id/etProductModel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:imeOptions="actionDone"
@@ -92,5 +93,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/guardar"
-        android:layout_gravity="end"/>
-</LinearLayout>
+        android:onClick="guardarProducto"
+        android:layout_gravity="end">
+
+    </Button>
+
+    </LinearLayout>

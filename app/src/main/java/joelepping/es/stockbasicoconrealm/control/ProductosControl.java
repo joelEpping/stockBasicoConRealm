@@ -19,7 +19,7 @@ public class ProductosControl {
         return  new ProductosDAO().getProductos(id);
     }
 
-    public void insertarProductos(Productos productos){
-         new ProductosDAO().insertarProductos(productos);
+    public boolean insertarProductos(Productos productos){
+          return  new ProductosDAO().insertarProductos(productos);
     }
 }

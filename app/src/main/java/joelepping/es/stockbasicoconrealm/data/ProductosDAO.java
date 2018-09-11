@@ -8,12 +8,12 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import joelepping.es.stockbasicoconrealm.model.Productos;
-import joelepping.es.stockbasicoconrealm.util.AutoIncrementProduct;
 
 import static joelepping.es.stockbasicoconrealm.util.AutoIncrementProduct.incrementarId;
 
 public class ProductosDAO {
-
+    private boolean estadoInsercion;
+    private final String TAG = (ProductosDAO.this.getClass().getSimpleName());
     private Realm realm = Realm.getDefaultInstance();
 
     public final List<Productos> getProductos() {
@@ -32,12 +32,13 @@ public class ProductosDAO {
         return productos;
     }
 
-    public void insertarProductos(final Productos productos){
-        realm.executeTransaction(new Realm.Transaction() {
+    public boolean insertarProductos(final Productos productos) {
+
+        realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 int index = incrementarId();
-                Productos realmProducto = realm.createObject(Productos.class,index);
+                Productos realmProducto = realm.createObject(Productos.class, index);
                 realmProducto.setCodigoDeBarra(productos.getCodigoDeBarra());
                 realmProducto.setNombre(productos.getNombre());
                 realmProducto.setModelo(productos.getModelo());
@@ -45,7 +46,25 @@ public class ProductosDAO {
                 realmProducto.setCantidad(productos.getCantidad());
                 realmProducto.setPrecio(productos.getPrecio());
             }
+        }, new Realm.Transaction.OnSuccess() {
+            @Override
+            public void onSuccess() {
+                Log.i(TAG,"Insertado Correctamente");
+
+              estadoInsercion = true;
+
+            }
+        }, new Realm.Transaction.OnError() {
+            @Override
+            public void onError(Throwable error) {
+                Log.e(TAG,error.getMessage());
+                Log.e(TAG,"pasa colado aqui");
+                estadoInsercion = false;
+            }
         });
+        Log.e(TAG, String.valueOf(estadoInsercion));
+        return estadoInsercion;
     }
+
 }
 

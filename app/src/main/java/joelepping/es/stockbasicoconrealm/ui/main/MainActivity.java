@@ -12,8 +12,6 @@ import joelepping.es.stockbasicoconrealm.R;
 import joelepping.es.stockbasicoconrealm.control.ProductosControl;
 import joelepping.es.stockbasicoconrealm.model.Productos;
 import joelepping.es.stockbasicoconrealm.ui.addProduct.NewProductActivity;
-import me.dm7.barcodescanner.zbar.Result;
-import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ProductosControl productosControl = new ProductosControl();
-        //Productos productos = new Productos(0,"codigo de barra","nombre","modelo","imagen",22.f,40);
+        //Productos productos = new Productos(0,"PRUEABAAAAA","nombre","modelo","imagen",22.f,40);
         //productosControl.insertarProductos(productos);
         productosControl.getProductos();
 
