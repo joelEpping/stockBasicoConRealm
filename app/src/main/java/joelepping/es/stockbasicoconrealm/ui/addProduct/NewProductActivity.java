@@ -1,7 +1,9 @@
 package joelepping.es.stockbasicoconrealm.ui.addProduct;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,13 +20,14 @@ import butterknife.ButterKnife;
 import joelepping.es.stockbasicoconrealm.R;
 import joelepping.es.stockbasicoconrealm.control.ProductosControl;
 import joelepping.es.stockbasicoconrealm.model.Productos;
+import joelepping.es.stockbasicoconrealm.ui.main.MainActivity;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class NewProductActivity extends AppCompatActivity  implements ZXingScannerView.ResultHandler {
 
-    private static final String TAG = "NewProductActivity";
+    private  final String TAG = NewProductActivity.this.getClass().getSimpleName();
     private ZXingScannerView zXingScannerView;
-    ProductosControl productosControl = new ProductosControl();
+    ProductosControl productosControl = new ProductosControl(this);
     private Productos productos;
     String codigo;
     String direccionDeLaImage = null;
@@ -67,7 +70,7 @@ public class NewProductActivity extends AppCompatActivity  implements ZXingScann
         ButterKnife.bind(this);
         Toast.makeText(getApplicationContext(), result.getText(), Toast.LENGTH_SHORT).show();
         codigo = result.getText();
-        Log.i("CODIGO HANDLE", codigo);
+        Log.i(TAG, codigo);
         codigoBarra = (TextView) findViewById(R.id.codigoBarra);
         imageView = (ImageView) findViewById(R.id.ivProductImage);
         codigoBarra.setText(codigo);
@@ -86,7 +89,8 @@ public class NewProductActivity extends AppCompatActivity  implements ZXingScann
             case 1:
                 if(resultCode == RESULT_OK){
                     Uri selectedImage = imageReturnedIntent.getData();
-                    direccionDeLaImage = selectedImage.getPath();
+                    Log.e("ASDFASFDADFSADFSADF",selectedImage.toString());
+                    direccionDeLaImage = selectedImage.toString();
                     imageView.setImageURI(selectedImage);
                 }
 
@@ -100,9 +104,6 @@ public class NewProductActivity extends AppCompatActivity  implements ZXingScann
         final String modelo= this.modelo.getText().toString();
         final String  precio =this.precio.getText().toString();
         final String cantidad = this.cantidad.getText().toString();
-
-
-
         if(nombre.length()==0){
             this.nombre.requestFocus(); this.nombre.setError("Nombre no puede ser nulo");
             return false;
@@ -128,13 +129,12 @@ public class NewProductActivity extends AppCompatActivity  implements ZXingScann
 
     public void guardarProducto(View view){
         if(validar()){
-            if(productosControl.insertarProductos(productos)){
-                Toast.makeText(this, "insertado correctamente", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this, "Error al inentar insertar, intente nuevamente", Toast.LENGTH_SHORT).show();
-            }
+            productosControl.insertarProductos(productos);
+
         }
     }
+
+
 
 
 }

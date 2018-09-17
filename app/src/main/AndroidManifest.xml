@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.EXTERNAL_WRITE_PERMISSION"/>
+
 
     <application
         android:name=".stockbasicoconrealmApp"
@@ -21,7 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.addProduct.NewProductActivity"></activity>
+        <activity android:name=".ui.addProduct.NewProductActivity" />
+        <activity android:name=".ui.listProduct.ListActivity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package joelepping.es.stockbasicoconrealm.control;
 
+import android.content.Context;
+
 import java.util.List;
 
 import joelepping.es.stockbasicoconrealm.data.ProductosDAO;
@@ -10,6 +12,10 @@ import joelepping.es.stockbasicoconrealm.model.Productos;
  */
 
 public class ProductosControl {
+    Context ctx;
+    public ProductosControl(Context context) {
+        ctx = context;
+    }
 
     public List<Productos> getProductos(){
         return new ProductosDAO().getProductos();
@@ -19,7 +25,7 @@ public class ProductosControl {
         return  new ProductosDAO().getProductos(id);
     }
 
-    public boolean insertarProductos(Productos productos){
-          return  new ProductosDAO().insertarProductos(productos);
+    public void insertarProductos(Productos productos){
+            new ProductosDAO().insertarProductos(productos,ctx);
     }
 }

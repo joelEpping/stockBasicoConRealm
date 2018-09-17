@@ -7,11 +7,9 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.Toast;
-
 import joelepping.es.stockbasicoconrealm.R;
-import joelepping.es.stockbasicoconrealm.control.ProductosControl;
-import joelepping.es.stockbasicoconrealm.model.Productos;
 import joelepping.es.stockbasicoconrealm.ui.addProduct.NewProductActivity;
+import joelepping.es.stockbasicoconrealm.ui.listProduct.ListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,14 +21,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ProductosControl productosControl = new ProductosControl();
-        //Productos productos = new Productos(0,"PRUEABAAAAA","nombre","modelo","imagen",22.f,40);
-        //productosControl.insertarProductos(productos);
-        productosControl.getProductos();
-
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
-        //Set Event
         setSingleEvent(mainGrid);
+
     }
 
     @Override
@@ -58,7 +51,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void resultado(int finalI) {
-        if(finalI == 0)
-            startActivity(new Intent(this, NewProductActivity.class));
+        switch (finalI){
+            case 0:
+                startActivity(new Intent(this, NewProductActivity.class));
+                break;
+            case 1:
+                startActivity(new Intent(this, ListActivity.class));
+        }
+
+
     }
 }
