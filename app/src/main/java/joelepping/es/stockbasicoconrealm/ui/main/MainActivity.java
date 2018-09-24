@@ -1,13 +1,18 @@
 package joelepping.es.stockbasicoconrealm.ui.main;
 
 import android.content.Intent;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.Toast;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 import joelepping.es.stockbasicoconrealm.R;
+import joelepping.es.stockbasicoconrealm.model.Productos;
 import joelepping.es.stockbasicoconrealm.ui.addProduct.NewProductActivity;
 import joelepping.es.stockbasicoconrealm.ui.listProduct.ListActivity;
 
@@ -21,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+      /*  Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<Productos> rows = realm.where(Productos.class).findAll();
+                rows.deleteAllFromRealm();
+            }
+        });*/
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
         setSingleEvent(mainGrid);
 

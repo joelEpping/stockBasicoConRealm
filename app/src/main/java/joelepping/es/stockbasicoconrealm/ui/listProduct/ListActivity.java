@@ -2,6 +2,7 @@ package joelepping.es.stockbasicoconrealm.ui.listProduct;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.StrictMode;
@@ -14,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -52,41 +54,41 @@ public class ListActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapater);*/
         imageView = findViewById(R.id.image);
         data_list = productosControl.getProductos();
-        Picasso.with(this).load(Uri.parse(data_list.get(0).getImagen())).into(imageView);
         TableLayout tl = (TableLayout) findViewById(R.id.tableLayout1);
 
         //imageView.setImageURI(Uri.parse(data_list.get(0).getImagen()));
         for (Productos p : data_list) {
-            TableRow row = new TableRow(this);
-            TextView contador = new TextView(this);
-            contador.setBackground(drawable);
-            TextView codigoBarra = new TextView(this);
-            codigoBarra.setBackground(drawable);
-            TextView nombre = new TextView(this);
-            nombre.setBackground(drawable);
-            TextView modelo = new TextView(this);
-            modelo.setBackground(drawable);
-            TextView precio = new TextView(this);
-            precio.setBackground(drawable);
-            TextView cantidad = new TextView(this);
-            cantidad.setBackground(drawable);
-            TextView imagen = new TextView(this);
-            imagen.setBackground(drawable);
+           // TableRow row = new TableRow(this);
+            TextView contador = (TextView) findViewById(R.id.txt_id);
+            //contador.setBackground(drawable);
+            TextView codigoBarra = (TextView) findViewById(R.id.txt_codigoBarra);
+            //codigoBarra.setBackground(drawable);
+            TextView nombre = (TextView) findViewById(R.id.txt_nombre);
+            //nombre.setBackground(drawable);
+            TextView modelo = (TextView) findViewById(R.id.txt_modelo);
+           // modelo.setBackground(drawable);
+            TextView precio = (TextView) findViewById(R.id.txt_precio);
+            //precio.setBackground(drawable);
+            TextView cantidad = (TextView) findViewById(R.id.txt_cantidad);
+            //cantidad.setBackground(drawable);
+            ImageView imagen = (ImageView)findViewById(R.id.img_producto);
+            //imagen.setBackground(drawable);
             codigoBarra.setText(p.getCodigoDeBarra());
             contador.setText(String.valueOf(p.getId()));
             nombre.setText(p.getNombre());
             modelo.setText(p.getModelo());
             precio.setText(String.valueOf(p.getPrecio()));
             cantidad.setText(String.valueOf(p.getCantidad()));
-           // imagen.setText(String.valueOf(p.getImagen()));
-            row.addView(contador);
+            File direccionDeLaimagen = new File(p.getImagen());
+            imagen.setImageBitmap(BitmapFactory.decodeFile(direccionDeLaimagen.getAbsolutePath()));
+            /*row.addView(contador);
             row.addView(codigoBarra);
             row.addView(nombre);
             row.addView(precio);
             row.addView(cantidad);
             row.addView(modelo);
             row.addView(imagen);
-            tl.addView(row);
+            tl.addView(row);*/
         }
         if (ContextCompat.checkSelfPermission(ListActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
             ActivityCompat.requestPermissions(ListActivity.this, new String[]{
@@ -95,8 +97,10 @@ public class ListActivity extends AppCompatActivity {
                     54);
         }else{
             Toast.makeText(ListActivity.this, "Permiso concedido", Toast.LENGTH_SHORT).show();
-            imageView.setImageURI(Uri.parse(data_list.get(0).getImagen()));
-            Picasso.with(this).load(Uri.parse(data_list.get(0).getImagen())).into(imageView);
+            // File direccionDeLaimagen = new File(data_list.get(1).getImagen());
+            //imageView.setImageBitmap(BitmapFactory.decodeFile(direccionDeLaimagen.getAbsolutePath()));
+           // imageView.setImageURI(Uri.parse(data_list.get(0).getImagen()));
+           // Picasso.with(this).load(Uri.parse(data_list.get(0).getImagen())).into(imageView);
         }
     }
 
@@ -110,8 +114,8 @@ public class ListActivity extends AppCompatActivity {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(ListActivity.this, "Permiso concedido", Toast.LENGTH_SHORT).show();
-                    imageView.setImageURI(Uri.parse(data_list.get(0).getImagen()));
-                    Picasso.with(this).load(new File(data_list.get(0).getImagen())).into(imageView);
+                    //imageView.setImageURI(Uri.parse(data_list.get(0).getImagen()));
+                    Picasso.with(this).load(new File(data_list.get(1).getImagen())).into(imageView);
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
                 } else {
