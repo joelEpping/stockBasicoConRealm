@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     GridLayout mainGrid;
-
+    //m,hgkj
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
