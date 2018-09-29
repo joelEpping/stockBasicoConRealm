@@ -21,8 +21,8 @@ public class ProductosControl {
         return new ProductosDAO().getProductos();
     }
 
-    public Productos getProductos(int id){
-        return  new ProductosDAO().getProductos(id);
+    public Productos getProductos(String codigoDeBarra){
+        return  new ProductosDAO().getProductos(codigoDeBarra);
     }
 
     public void insertarProductos(Productos productos){

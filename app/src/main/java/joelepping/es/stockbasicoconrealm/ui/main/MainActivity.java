@@ -15,12 +15,11 @@ import joelepping.es.stockbasicoconrealm.R;
 import joelepping.es.stockbasicoconrealm.model.Productos;
 import joelepping.es.stockbasicoconrealm.ui.addProduct.NewProductActivity;
 import joelepping.es.stockbasicoconrealm.ui.listProduct.ListActivity;
+import joelepping.es.stockbasicoconrealm.ui.sellProduct.SellActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-
     GridLayout mainGrid;
-    //m,hgkj
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(MainActivity.this, "Clicked at: "+ finalI, Toast.LENGTH_SHORT).show();
                     resultado(finalI);
 
 
@@ -70,6 +68,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 1:
                 startActivity(new Intent(this, ListActivity.class));
+                break;
+            case 2:
+                startActivity(new Intent(this, SellActivity.class));
+                break;
+            case 3:
+                Toast.makeText(this, "Actividad en proceso. Aun no concluida", Toast.LENGTH_SHORT).show();
+                break;
+
+
         }
 
 

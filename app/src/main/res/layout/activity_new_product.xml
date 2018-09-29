@@ -19,7 +19,7 @@
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/title_activity_new_product"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher" />
+            android:background="@mipmap/ic_launcher" />
 
         <Button
             android:id="@+id/btnProductImage"
@@ -90,6 +90,7 @@
         android:inputType="number" />
 
     <Button
+        android:id="@+id/btn_guardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/guardar"

@@ -30,8 +30,8 @@ public class ProductosDAO {
         return productos;
     }
 
-    public final Productos getProductos(int id) {
-        Productos productos = realm.where(Productos.class).equalTo("id", id).findFirst();
+    public final Productos getProductos(String codigoDeBarra) {
+        Productos productos = realm.where(Productos.class).equalTo("codigoDeBarra", codigoDeBarra).findFirst();
         if (productos != null) {
             Log.i("Listar Productos by id", productos.toString());
         }

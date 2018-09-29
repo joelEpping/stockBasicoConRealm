@@ -55,24 +55,52 @@ public class ListActivity extends AppCompatActivity {
         imageView = findViewById(R.id.image);
         data_list = productosControl.getProductos();
         TableLayout tl = (TableLayout) findViewById(R.id.tableLayout1);
-
+        //TableRow row = (TableRow) findViewById(R.id.tb_detalles);
         //imageView.setImageURI(Uri.parse(data_list.get(0).getImagen()));
         for (Productos p : data_list) {
-           // TableRow row = new TableRow(this);
+            TableRow row = new TableRow(this);
+            TextView contador = new TextView(this);
+            contador.setBackground(drawable);
+            TextView codigoBarra = new TextView(this);
+            codigoBarra.setBackground(drawable);
+            TextView nombre = new TextView(this);
+            nombre.setBackground(drawable);
+            TextView modelo = new TextView(this);
+            modelo.setBackground(drawable);
+            TextView precio = new TextView(this);
+            precio.setBackground(drawable);
+            TextView cantidad = new TextView(this);
+            cantidad.setBackground(drawable);
+          //  ImageView imagen = new ImageView(this);
+
+            codigoBarra.setText(p.getCodigoDeBarra());
+            contador.setText(String.valueOf(p.getId()));
+            nombre.setText(p.getNombre());
+            modelo.setText(p.getModelo());
+            precio.setText(String.valueOf(p.getPrecio()));
+            cantidad.setText(String.valueOf(p.getCantidad()));
+            //File direccionDeLaimagen = new File(p.getImagen());
+            //imagen.setImageBitmap(BitmapFactory.decodeFile(direccionDeLaimagen.getAbsolutePath()));
+
+            // imagen.setBackground(Drawable.createFromPath(direccionDeLaimagen.getAbsolutePath()));
+            // imagen.setText(String.valueOf(p.getImagen()));
+            row.addView(contador);
+            row.addView(codigoBarra);
+            row.addView(nombre);
+            row.addView(modelo);
+            row.addView(precio);
+            row.addView(cantidad);
+            //row.addView(imagen);
+            tl.addView(row);
+
+           /* TableRow row =  new TableRow(this);
             TextView contador = (TextView) findViewById(R.id.txt_id);
-            //contador.setBackground(drawable);
             TextView codigoBarra = (TextView) findViewById(R.id.txt_codigoBarra);
-            //codigoBarra.setBackground(drawable);
             TextView nombre = (TextView) findViewById(R.id.txt_nombre);
-            //nombre.setBackground(drawable);
             TextView modelo = (TextView) findViewById(R.id.txt_modelo);
-           // modelo.setBackground(drawable);
             TextView precio = (TextView) findViewById(R.id.txt_precio);
-            //precio.setBackground(drawable);
             TextView cantidad = (TextView) findViewById(R.id.txt_cantidad);
-            //cantidad.setBackground(drawable);
             ImageView imagen = (ImageView)findViewById(R.id.img_producto);
-            //imagen.setBackground(drawable);
             codigoBarra.setText(p.getCodigoDeBarra());
             contador.setText(String.valueOf(p.getId()));
             nombre.setText(p.getNombre());
@@ -80,15 +108,10 @@ public class ListActivity extends AppCompatActivity {
             precio.setText(String.valueOf(p.getPrecio()));
             cantidad.setText(String.valueOf(p.getCantidad()));
             File direccionDeLaimagen = new File(p.getImagen());
-            imagen.setImageBitmap(BitmapFactory.decodeFile(direccionDeLaimagen.getAbsolutePath()));
-            /*row.addView(contador);
-            row.addView(codigoBarra);
-            row.addView(nombre);
-            row.addView(precio);
-            row.addView(cantidad);
-            row.addView(modelo);
-            row.addView(imagen);
-            tl.addView(row);*/
+            imagen.setBackground(Drawable.createFromPath(direccionDeLaimagen.getAbsolutePath()));
+
+            tl.addView(contador);*/
+
         }
         if (ContextCompat.checkSelfPermission(ListActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
             ActivityCompat.requestPermissions(ListActivity.this, new String[]{
